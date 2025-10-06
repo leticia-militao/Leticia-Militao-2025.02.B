@@ -5,4 +5,4 @@ st.write("Alô mundo")
 
 nome = st.text_input("Digite o seu nome: ")
 if nome:
-    st.writite(nome.upper())
+    st.write(nome.upper())
