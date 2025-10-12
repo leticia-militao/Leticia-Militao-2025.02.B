@@ -28,3 +28,11 @@ menor_nota = min(notas)
 st.write(f"A média final é: {media}")
 st.write(f"A maior nota é: {maior_nota}")
 st.write(f"A menor nota é: {menor_nota}")
+
+st.write("3. Desenvolva um programa que leia o seu nome completo e que apresente somente o seu primeiro e último nomes.")
+nome_completo = st.text_input("Informe o seu nome completo: ")
+nomes = nome_completo.upper.split()
+primeiro_nome = nomes[0]
+ultimo_nome = nomes[-1]
+st.text_input(f"Primeiro nome: {primeiro_nome}")
+st.text_input(f"Último nome: {ultimo_nome}")
