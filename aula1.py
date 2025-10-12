@@ -12,9 +12,9 @@ st.title("Lista de Exercícios 1")
 st.write("1. A partir de um número informado pelo usuário, indique se um número inteiro qualquer é par ou ímpar.")
 numero = st.number_input("Informe um número inteiro: ")
 if numero % 2 == 0:
-    st.text_input(f"O número {numero} é par.")
+    st.write(f"O número {numero} é par.")
 else:
-    st.text_input(f"O número {numero} é ímpar.")
+    st.write(f"O número {numero} é ímpar.")
 
 st.write("2. Desenvolva um programa que armazene quatro notas em uma lista e que apresente: a média final, a maior nota e a menor nota.")
 nota1 = st.number_input("Informe a primeira nota: ")
