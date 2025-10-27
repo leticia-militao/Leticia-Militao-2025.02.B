@@ -41,7 +41,7 @@ if busca == "a) Projetos de Lei":
                 response_detalhes = requests.get(url_detalhes)
                 if response_detalhes.status_code == 200:
                     detalhes = response_detalhes.json()['dados']
-                    st.header("--- Detalhes do Projeto ---")
+                    st.header("Detalhes do Projeto")
                     st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                     st.write(f"Ementa completa: {detalhes['ementa']}")
                     st.write("Obrigado por usar o programa. Até a próxima!")
@@ -62,7 +62,7 @@ if busca == "a) Projetos de Lei":
                           response_detalhes = requests.get(url_detalhes)
                           if response_detalhes.status_code == 200:
                               detalhes = response_detalhes.json()['dados']
-                              st.header("--- Detalhes do Projeto ---")
+                              st.header("Detalhes do Projeto")
                               st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                               st.write(f"Ementa completa: {detalhes['ementa']}")
                               st.write("Obrigado por usar o programa. Até a próxima!")
