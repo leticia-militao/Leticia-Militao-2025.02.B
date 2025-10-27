@@ -12,9 +12,10 @@ st.header("Uma plataforma dedicada ao acesso a informações da Câmara dos Depu
 st.write("Aqui você pode buscar informações sobre Projetos de Lei, Propostas de Emenda Constitucional, ou deputados.")
 
 #Menu 1 - Opção de Busca
-st.write("O que você está procurando?")
+st.header("O que você está procurando?")
 opcoes = ["a) Projetos de Lei", "b) Propostas de Emenda Constitucional", "c) Deputados", "d) Sair"]
-busca = st.radio("Selecione a opção da sua busca:", opcoes)
+st.write("Selecione a opção da sua busca:")
+busca = st.radio(opcoes)
 if busca == "a) Projetos de Lei":
   st.write("Você escolheu a opção de buscar projetos de lei.")
 if busca == "b) Propostas de Emenda Constitucional":
@@ -25,7 +26,7 @@ if busca == "d) Sair":
   st.write("Você escolheu a opção de sair da pesquisa.")
   st.write("Obrigado por usar o programa. Até a próxima!")
 
-#Resultado do Menu 1 - busca a) PL
+#Resultado do Menu a) PL
 if busca == "a) Projetos de Lei":
     numero_pl = st.text_input("Digite o número do projeto de lei:")
     ano_pl = st.text_input("Digite o ano do projeto de lei:")
