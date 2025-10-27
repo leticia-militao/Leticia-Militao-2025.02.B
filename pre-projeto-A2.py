@@ -31,6 +31,7 @@ if busca == "a) Projetos de Lei":
     ano_pl = st.text_input("Digite o ano do projeto de lei:")
     url_busca_pl = f"https://dadosabertos.camara.leg.br/api/v2/proposicoes?siglaTipo=PL&numero={numero_pl}&ano={ano_pl}"
     response_pl = requests.get(url_busca_pl)
+    st.write(type(response_pl))
     if response_pl.ststus_code == 200:
         dados_pl = response_pl.json()
         if dados_pl['dados']:
