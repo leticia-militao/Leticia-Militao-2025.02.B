@@ -16,14 +16,14 @@ st.header("O que você está procurando?")
 opcoes = ["a) Projetos de Lei", "b) Propostas de Emenda Constitucional", "c) Deputados", "d) Sair"]
 busca = st.radio("Selecione a opção da sua busca:", opcoes)
 if busca == "a) Projetos de Lei":
-  st.write("Você escolheu a opção de buscar projetos de lei.")
+  st.header("Você escolheu a opção de buscar projetos de lei.")
 if busca == "b) Propostas de Emenda Constitucional":
-  st.write("Você escolheu a opção de buscar propostas de emenda constitucional.")
+  st.header("Você escolheu a opção de buscar propostas de emenda constitucional.")
 if busca == "c) Deputados":
-  st.write("Você escolheu a opção de buscar informações de deputados.")
+  st.header("Você escolheu a opção de buscar informações de deputados.")
 if busca == "d) Sair":
-  st.write("Você escolheu a opção de sair da pesquisa.")
-  st.write("Obrigado por usar o programa. Até a próxima!")
+  st.header("Você escolheu a opção de sair da pesquisa.")
+  st.header("Obrigado por usar o programa. Até a próxima!")
 
 #Resultado do Menu a) PL
 if busca == "a) Projetos de Lei":
