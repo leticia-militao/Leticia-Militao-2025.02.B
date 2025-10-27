@@ -14,8 +14,7 @@ st.write("Aqui você pode buscar informações sobre Projetos de Lei, Propostas 
 #Menu 1 - Opção de Busca
 st.header("O que você está procurando?")
 opcoes = ["a) Projetos de Lei", "b) Propostas de Emenda Constitucional", "c) Deputados", "d) Sair"]
-st.write("Selecione a opção da sua busca:")
-busca = st.radio(opcoes)
+busca = st.radio("Selecione a opção da sua busca:", opcoes)
 if busca == "a) Projetos de Lei":
   st.write("Você escolheu a opção de buscar projetos de lei.")
 if busca == "b) Propostas de Emenda Constitucional":
