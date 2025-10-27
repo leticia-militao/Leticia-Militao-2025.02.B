@@ -114,3 +114,44 @@ if busca == "b) Propostas de Emenda Constitucional":
                        break
     else:
         st.write(f"Erro na requisição")
+
+#Resultado do Menu c) Deputados
+if busca == "c) Deputados"
+    nome_deputado = st.text_input("Digite o nome do deputado(a):")
+    url_deputados = f"https://dadosabertos.camara.leg.br/api/v2/deputados?nome={nome_deputado}"
+    response = requests.get(url_deputados)
+    if response.status_code == 200:
+        dados_deputado = response.json()['dados']
+        if dados_deputado:
+            deputado_id = dados_deputado[0]['id']
+            deputado_nome = dados_deputado[0]['nome']
+            deputado_partido = dados_deputado[0]['siglaPartido']
+            deputado_uf = dados_deputado[0]['siglaUf']
+            df_deputado = pd.DataFrame(dados_deputado)
+            st.header(f"Deputado(a) encontrado(a).")
+            st.write(f"Nome: {deputado_nome}")
+            st.write(f"Partido: {deputado_partido}")
+            st.write(f"UF: {deputado_uf}")
+            st.write(f"ID: {deputado_id}")
+        else:
+            while True:
+              st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")
+              nome_deputado = st.text_input("Digite o nome do deputado(a) novamente: ")
+              url_deputados = f"https://dadosabertos.camara.leg.br/api/v2/deputados?nome={nome_deputado}"
+              response = requests.get(url_deputados)
+              if response.status_code == 200:
+                dados_deputado = response.json()['dados']
+                if dados_deputado:
+                  deputado_id = dados_deputado[0]['id']
+                  deputado_nome = dados_deputado[0]['nome']
+                  deputado_partido = dados_deputado[0]['siglaPartido']
+                  deputado_uf = dados_deputado[0]['siglaUf']
+                  df_deputado = pd.DataFrame(dados_deputado)
+                  st.header(f"Deputado(a) encontrado(a).")
+                  st.write(f"Nome: {deputado_nome}")
+                  st.write(f"Partido: {deputado_partido}")
+                  st.write(f"UF: {deputado_uf}")
+                  st.write(f"ID: {deputado_id}")
+                break
+    else:
+        st.write(f"Erro na requisição")
