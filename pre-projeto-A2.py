@@ -113,4 +113,4 @@ if busca == "b) Propostas de Emenda Constitucional":
                      st.write("Obrigado por usar o programa. Até a próxima!")
                    break
     else:
-        print(f"Erro na requisição: {response_pec.status_code}")
+        st.write(f"Erro na requisição: {response_pec.status_code}")
