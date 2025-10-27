@@ -68,7 +68,7 @@ if busca == "a) Projetos de Lei":
                               st.write("Obrigado por usar o programa. Até a próxima!")
                           break
 else:
-    st.write(f"Erro na requisição: {response_pl.status_code}")
+    st.write(f"Erro na requisição")
 
 #Resultado Menu b) PEC
 if busca == "b) Propostas de Emenda Constitucional":
@@ -113,4 +113,4 @@ if busca == "b) Propostas de Emenda Constitucional":
                          st.write("Obrigado por usar o programa. Até a próxima!")
                        break
     else:
-        st.write(f"Erro na requisição: {response_pec.status_code}")
+        st.write(f"Erro na requisição")
