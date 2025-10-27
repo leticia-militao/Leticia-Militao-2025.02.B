@@ -90,27 +90,27 @@ if busca == "b) Propostas de Emenda Constitucional":
                       st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                       st.write(f"Ementa completa: {detalhes['ementa']}")
                       st.write("Obrigado por usar o programa. Até a próxima!")
-    else:
-          while True:
-            st.write(f"PEC {numero_pec}/{ano_pec} não encontrada.")
-            numero_pec = st.text_input("Digite novamente o número da proposta de emenda constitucional: ")
-            ano_pec = st.text_input("Digite novamente o ano da proposta de emenda constitucional: ")
-            url_busca_pec = f"https://dadosabertos.camara.leg.br/api/v2/proposicoes?siglaTipo=PEC&numero={numero_pec}&ano={ano_pec}"
-            response_pec = requests.get(url_busca_pec)
-            if response_pec.status_code == 200:
-              dados_pec = response_pec.json()
-              if dados_pec['dados']:
-                 for proposicao in dados_pec['dados']:
-                   id_proposicao = proposicao['id']
-                   st.header(f"PEC encontrado!")
-                   url_detalhes = f"https://dadosabertos.camara.leg.br/api/v2/proposicoes/{id_proposicao}"
-                   response_detalhes = requests.get(url_detalhes)
-                   if response_detalhes.status_code == 200:
-                     detalhes = response_detalhes.json()['dados']
-                     st.header("Detalhes da PEC")
-                     st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
-                     at.write(f"Ementa completa: {detalhes['ementa']}")
-                     st.write("Obrigado por usar o programa. Até a próxima!")
-                   break
+        else:
+              while True:
+                st.write(f"PEC {numero_pec}/{ano_pec} não encontrada.")
+                numero_pec = st.text_input("Digite novamente o número da proposta de emenda constitucional: ")
+                ano_pec = st.text_input("Digite novamente o ano da proposta de emenda constitucional: ")
+                url_busca_pec = f"https://dadosabertos.camara.leg.br/api/v2/proposicoes?siglaTipo=PEC&numero={numero_pec}&ano={ano_pec}"
+                response_pec = requests.get(url_busca_pec)
+                if response_pec.status_code == 200:
+                  dados_pec = response_pec.json()
+                  if dados_pec['dados']:
+                     for proposicao in dados_pec['dados']:
+                       id_proposicao = proposicao['id']
+                       st.header(f"PEC encontrado!")
+                       url_detalhes = f"https://dadosabertos.camara.leg.br/api/v2/proposicoes/{id_proposicao}"
+                       response_detalhes = requests.get(url_detalhes)
+                       if response_detalhes.status_code == 200:
+                         detalhes = response_detalhes.json()['dados']
+                         st.header("Detalhes da PEC")
+                         st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
+                         at.write(f"Ementa completa: {detalhes['ementa']}")
+                         st.write("Obrigado por usar o programa. Até a próxima!")
+                       break
     else:
         st.write(f"Erro na requisição: {response_pec.status_code}")
