@@ -116,7 +116,7 @@ if busca == "b) Propostas de Emenda Constitucional":
         st.write(f"Erro na requisição")
 
 #Resultado do Menu c) Deputados
-if busca == "c) Deputados"
+if busca == "c) Deputados":
     nome_deputado = st.text_input("Digite o nome do deputado(a):")
     url_deputados = f"https://dadosabertos.camara.leg.br/api/v2/deputados?nome={nome_deputado}"
     response = requests.get(url_deputados)
