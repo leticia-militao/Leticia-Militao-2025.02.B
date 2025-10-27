@@ -155,3 +155,48 @@ if busca == "c) Deputados":
                 break
     else:
         st.write(f"Erro na requisição")
+
+#Menu c.1
+if busca == "3" and response.status_code == 200 and dados_deputado:
+            deputado_id = dados_deputado[0]['id']
+            deputado_nome = dados_deputado[0]['nome']
+            deputado_partido = dados_deputado[0]['siglaPartido']
+            deputado_uf = dados_deputado[0]['siglaUf']
+            df_deputado = pd.DataFrame(dados_deputado)
+            st.header("O que mais você deseja saber a respeito desse deputado(a)?")
+            opcoes_deputado = ["1 - Despesas do deputado(a)", "2 - Frentes parlamentares do deputado(a)", "3 - Órgão que o deputado(a) integra"]
+            info_deputado = st.radio("Selecione a opção da sua busca:", opcoes_deputado)
+            if info_deputado == "1 - Despesas do deputado(a)":
+                st.header("Você escolheu a opção de buscar as despesas do deputado(a).")
+                url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
+                response_despesas = requests.get(url_despesas)
+                if response_despesas.status_code == 200:
+                  dados_despesas = response_despesas.json()
+                  df_despesas = pd.DataFrame(dados_despesas['dados'])
+                  st.write(df_despesas.head())
+                  st.write(f"Total de despesas: R$ {df_despesas['valorDocumento'].sum()}")
+                  st.write("Obrigado por usar o programa. Até a próxima!")
+                else:
+                  st.write(f"Erro na requisição")
+            elif info_deputado == "2 - Frentes parlamentares do deputado(a)":
+                st.header("Você escolheu a opção de buscar as frentes parlamentares do deputado(a).")
+                url_frentes = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/frentes"
+                response_frentes = requests.get(url_frentes)
+                if response_frentes.status_code == 200:
+                  dados_frentes = response_frentes.json()
+                  df_frentes = pd.DataFrame(dados_frentes['dados'])
+                  st.write(df_frentes.head())
+                  st.write("Obrigado por usar o programa. Até a próxima!")
+                else:
+                  st.write(f"Erro na requisição")
+            elif info_deputado == "3":
+                st.header("Você escolheu a opção de buscar os órgãos que o deputado(a) integra.")
+                url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
+                response_orgaos = requests.get(url_orgaos)
+                if response_orgaos.status_code == 200:
+                  dados_orgaos = response_orgaos.json()
+                  df_orgaos = pd.DataFrame(dados_orgaos['dados'])
+                  st.write(df_orgaos.head())
+                  st.write("Obrigado por usar o programa. Até a próxima!")
+                else:
+                  st.write(f"Erro na requisição")
