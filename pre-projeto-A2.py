@@ -45,7 +45,7 @@ if busca == "a) Projetos de Lei":
                     st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                     st.write(f"Ementa completa: {detalhes['ementa']}")
                     st.write("Obrigado por usar o programa. Até a próxima!")
-    else:
+        else:
           while True:
               st.write(f"Projeto com o número {numero_pl} do ano {ano_pl} não encontrado.")
               numero_pl = st.text_input("Digite novamente o número do projeto de lei: ")
