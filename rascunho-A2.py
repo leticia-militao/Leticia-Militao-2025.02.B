@@ -95,7 +95,7 @@ if busca == "c) Deputados":
             st.write(f"UF: {deputado_uf}")
             st.write(f"ID: {deputado_id}")      
     else:
-        st.write("Erro na requisição.)
+        st.write(f"Erro na requisição.")
         st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")
 
 #Menu c.1
