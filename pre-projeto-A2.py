@@ -67,8 +67,8 @@ if busca == "a) Projetos de Lei":
                               st.write(f"Ementa completa: {detalhes['ementa']}")
                               st.write("Obrigado por usar o programa. Até a próxima!")
                           break
-else:
-    st.write(f"Erro na requisição")
+    else:
+        st.write(f"Erro na requisição")
 
 #Resultado Menu b) PEC
 if busca == "b) Propostas de Emenda Constitucional":
