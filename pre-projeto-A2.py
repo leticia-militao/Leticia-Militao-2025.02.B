@@ -97,20 +97,19 @@ if busca == "c) Deputados":
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
-              dados_despesas = response_despesas.json()
-              df_despesas = pd.DataFrame(dados_despesas['dados'])
-              fig_despesas = px.bar(df_despesas,
-                                    x='tipoDespesa',
-                                    y='valorDocumento',
-                                    color='mes',
-                                    title=f'Despesas de {nome_deputado}',
-                                    labels={'tipoDespesa': 'Tipo de Despesa',
-                                            'valorDocumento': 'Valor da Despesa',
-                                            'mes': 'Mês'})
-              fig_despesas.show()
-              st.write("Obrigado por usar o programa. Até a próxima!")
+                dados_despesas = response_despesas.json()
+                df_despesas = pd.DataFrame(dados_despesas['dados'])
+                fig_despesas = px.bar(df_despesas,
+                                      x='tipoDespesa',
+                                      y='valorDocumento',
+                                      color='mes',
+                                      title=f'Despesas de {nome_deputado}',
+                                      labels={'tipoDespesa': 'Tipo de Despesa',
+                                              'valorDocumento': 'Valor da Despesa',
+                                              'mes': 'Mês'})
+                fig_despesas.show()
             else:
-              st.write(f"Erro na requisição")
+                st.write(f"Erro na requisição")
             url_frentes = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/frentes"
             response_frentes = requests.get(url_frentes)
             if response_frentes.status_code == 200:
