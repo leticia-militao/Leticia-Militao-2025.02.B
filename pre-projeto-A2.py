@@ -94,34 +94,17 @@ if busca == "c) Deputados":
             st.write(f"Partido: {deputado_partido}")
             st.write(f"UF: {deputado_uf}")
             st.write(f"ID: {deputado_id}")
-        else:
-          st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")      
-    else:
-        st.write(f"Erro na requisição")
-
-#Menu c.1
-if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
-        deputado_id = dados_deputado[0]['id']
-        deputado_nome = dados_deputado[0]['nome']
-        deputado_partido = dados_deputado[0]['siglaPartido']
-        deputado_uf = dados_deputado[0]['siglaUf']
-        df_deputado = pd.DataFrame(dados_deputado)
-        st.header("O que mais você deseja saber a respeito desse deputado(a)?")
-        opcoes_deputado = ["1 - Despesas do deputado(a)", "2 - Frentes parlamentares do deputado(a)", "3 - Órgãos que o deputado(a) integra"]
-        info_deputado = st.radio("Selecione a opção da sua busca:", opcoes_deputado)
-        if info_deputado == "1 - Despesas do deputado(a)":
-            st.header("Você escolheu a opção de buscar as despesas do deputado(a).")
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
               df_despesas = pd.DataFrame(dados_despesas['dados'])
-              st.dataframe("
+              fig.px = px.bar(df_despesas, x = 'tipoDespesa', y = 'valorDocumento', z = 'mes', title = 'Despesas de {nome_deputado}'
+                              labels={'tipoDespesa': 'Tipo de Despesa', 'valorDocumento': 'Valor da Despesa', 'mes': 'Mês'}
+              fig.show()
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
-        elif info_deputado == "2 - Frentes parlamentares do deputado(a)":
-            st.header("Você escolheu a opção de buscar as frentes parlamentares do deputado(a).")
             url_frentes = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/frentes"
             response_frentes = requests.get(url_frentes)
             if response_frentes.status_code == 200:
@@ -131,8 +114,6 @@ if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
-        elif info_deputado == "3 - Órgãos que o deputado(a) integra":
-            st.header("Você escolheu a opção de buscar os órgãos que o deputado(a) integra.")
             url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
             response_orgaos = requests.get(url_orgaos)
             if response_orgaos.status_code == 200:
@@ -141,4 +122,7 @@ if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
               st.write(df_orgaos.head())
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
-              st.write(f"Erro na requisição")
+              st.write(f"Erro na requisição")      
+    else:
+        st.write(f"Erro na requisição")
+        st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")
