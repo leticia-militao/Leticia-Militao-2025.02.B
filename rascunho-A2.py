@@ -115,7 +115,7 @@ if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
               df_despesas = pd.DataFrame(dados_despesas['dados'])
-              st.dataframe(df)
+              st.dataframe(df_despesas)
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
