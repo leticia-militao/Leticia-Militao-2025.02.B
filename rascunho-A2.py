@@ -98,7 +98,9 @@ if busca == "c) Deputados":
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
-              st.write("Obrigado por usar o programa. Até a próxima!")
+              fig.px = px.bar(df_despesas, x = 'tipoDespesa', y = 'valorDocumento', z = 'mes', title = 'Despesas de {nome_deputado}'
+                              labels={'tipoDespesa': 'Tipo de Despesa', 'valorDocumento': 'Valor da Despesa', 'mes': 'Mês'}
+              fig.show()
             else:
               st.write(f"Erro na requisição")
         elif info_deputado == "2 - Frentes parlamentares do deputado(a)":
@@ -108,8 +110,7 @@ if busca == "c) Deputados":
             if response_frentes.status_code == 200:
               dados_frentes = response_frentes.json()
               df_frentes = pd.DataFrame(dados_frentes['dados'])
-              st.write(df_frentes.head())
-              st.write("Obrigado por usar o programa. Até a próxima!")
+              
             else:
               st.write(f"Erro na requisição")
         elif info_deputado == "3 - Órgãos que o deputado(a) integra":
