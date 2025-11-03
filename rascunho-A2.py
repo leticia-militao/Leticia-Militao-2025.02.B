@@ -115,7 +115,16 @@ if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
               df_despesas = pd.DataFrame(dados_despesas['dados'])
-              st.dataframe(df_despesas)
+              fig = go.Figure(data=[go.Table(
+                  header=dict(values=list(df_despesas.columns)
+                              fill_color='paleturquoise',
+                              align='left',
+                              font=dict(color='black', size=14)),
+                  cells=dict(values=[df_despesas],
+                             fill_color='lavender',
+                             align='left',
+                             font=dict(color='black', size=12))
+              )])
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
