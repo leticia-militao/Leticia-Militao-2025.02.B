@@ -5,6 +5,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
 #Apresentação
 st.title("Câmara Aberta")
@@ -93,6 +94,8 @@ if busca == "c) Deputados":
             st.write(f"Partido: {deputado_partido}")
             st.write(f"UF: {deputado_uf}")
             st.write(f"ID: {deputado_id}")
+        else:
+          st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")      
     else:
         st.write(f"Erro na requisição")
 
@@ -113,8 +116,7 @@ if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
               df_despesas = pd.DataFrame(dados_despesas['dados'])
-              st.write(df_despesas.head())
-              st.write(f"Total de despesas: R$ {df_despesas['valorDocumento'].sum()}")
+              st.dataframe("
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
