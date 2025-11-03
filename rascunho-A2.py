@@ -93,11 +93,10 @@ if busca == "c) Deputados":
             st.write(f"Nome: {deputado_nome}")
             st.write(f"Partido: {deputado_partido}")
             st.write(f"UF: {deputado_uf}")
-            st.write(f"ID: {deputado_id}")
-        else:
-          st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")      
+            st.write(f"ID: {deputado_id}")      
     else:
-        st.write(f"Erro na requisição")
+        st.write(f"Erro na requisição.
+        st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")
 
 #Menu c.1
 if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
