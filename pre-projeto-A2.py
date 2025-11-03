@@ -99,9 +99,15 @@ if busca == "c) Deputados":
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
               df_despesas = pd.DataFrame(dados_despesas['dados'])
-              fig.px = px.bar(df_despesas, x = 'tipoDespesa', y = 'valorDocumento', z = 'mes', title = 'Despesas de {nome_deputado}'
-                              labels={'tipoDespesa': 'Tipo de Despesa', 'valorDocumento': 'Valor da Despesa', 'mes': 'Mês'}
-              fig.show()
+              fig_despesas = px.bar(df_despesas,
+                                    x='tipoDespesa',
+                                    y='valorDocumento',
+                                    color='mes',
+                                    title=f'Despesas de {nome_deputado}',
+                                    labels={'tipoDespesa': 'Tipo de Despesa',
+                                            'valorDocumento': 'Valor da Despesa',
+                                            'mes': 'Mês'})
+              fig_despesas.show()
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
