@@ -97,7 +97,7 @@ if busca == "c) Deputados":
         st.write(f"Erro na requisição")
 
 #Menu c.1
-if busca == "3" and response.status_code == 200 and dados_deputado:
+if busca == "c) Deputados" and response.status_code == 200 and dados_deputado:
             deputado_id = dados_deputado[0]['id']
             deputado_nome = dados_deputado[0]['nome']
             deputado_partido = dados_deputado[0]['siglaPartido']
