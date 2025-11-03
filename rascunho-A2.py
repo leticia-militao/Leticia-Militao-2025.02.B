@@ -45,6 +45,8 @@ if busca == "a) Projetos de Lei":
                     st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                     st.write(f"Ementa completa: {detalhes['ementa']}")
                     st.write("Obrigado por usar o programa. Até a próxima!")
+        else:
+          st.write(f"Projeto com o número {numero_pl} do ano {ano_pl} não encontrado.")
     else:
         st.write(f"Erro na requisição")
 
@@ -68,6 +70,8 @@ if busca == "b) Propostas de Emenda Constitucional":
                       st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                       st.write(f"Ementa completa: {detalhes['ementa']}")
                       st.write("Obrigado por usar o programa. Até a próxima!")
+        else:
+          st.write(f"PEC {numero_pec}/{ano_pec} não encontrada.")
     else:
         st.write(f"Erro na requisição")
 
