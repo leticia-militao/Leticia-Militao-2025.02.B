@@ -99,7 +99,7 @@ if busca == "c) Deputados":
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
               fig.px = px.bar(df_despesas, x = 'tipoDespesa', y = 'valorDocumento', z = 'mes', title = 'Despesas de {nome_deputado}'
-                              labels={'tipoDespesa': 'Tipo de Despesa', 'valorDocumento': 'Valor da Despesa', 'mes': 'Mês'}
+                              labels={'tipoDespesa': 'Tipo de Despesa', 'valorDocumento': 'Valor da Despesa', 'mes': 'Mês'})
               fig.show()
             else:
               st.write(f"Erro na requisição")
