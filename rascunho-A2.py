@@ -98,8 +98,6 @@ if busca == "c) Deputados":
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
-              df_despesas_pie = pd.DataFrame(dados_despesas['ano', 'mes', 'tipoDespesa', 'valorDocumento'])
-              fig = px.pie(df_despesas_pie, values =
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
