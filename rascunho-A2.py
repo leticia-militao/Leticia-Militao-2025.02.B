@@ -98,6 +98,7 @@ if busca == "c) Deputados":
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
+              df_despesas = pd.DataFrame(dados_despesas['dados'])
               fig.px = px.bar(df_despesas, x='tipoDespesa', y='valorDocumento', z='mes', title='Despesas de {nome_deputado}',
                               labels={'tipoDespesa': 'Tipo de Despesa', 'valorDocumento': 'Valor da Despesa', 'mes': 'Mês'})
               fig.show()
