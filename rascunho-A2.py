@@ -47,9 +47,9 @@ if busca == "a) Projetos de Lei":
                     st.write(f"Ementa completa: {detalhes['ementa']}")
                     st.write("Obrigado por usar o programa. Até a próxima!")
         else:
-          st.write(f"Projeto com o número {numero_pl} do ano {ano_pl} não encontrado.")
+          st.warning(f"Projeto com o número {numero_pl} do ano {ano_pl} não encontrado.")
     else:
-        st.write(f"Erro na requisição")
+        st.warning(f"Erro na requisição")
 
 #Resultado Menu b) PEC
 if busca == "b) Propostas de Emenda Constitucional":
@@ -72,9 +72,9 @@ if busca == "b) Propostas de Emenda Constitucional":
                       st.write(f"Ementa completa: {detalhes['ementa']}")
                       st.write("Obrigado por usar o programa. Até a próxima!")
         else:
-          st.write(f"PEC {numero_pec}/{ano_pec} não encontrada.")
+          st.warning(f"PEC {numero_pec}/{ano_pec} não encontrada.")
     else:
-        st.write(f"Erro na requisição")
+        st.warning(f"Erro na requisição")
 
 #Resultado do Menu c) Deputados
 if busca == "c) Deputados":
@@ -98,36 +98,38 @@ if busca == "c) Deputados":
             if response_frentes.status_code == 200:
               dados_frentes = response_frentes.json()
               df_frentes = pd.DataFrame(dados_frentes['dados'])
-              st.subheader("Frentes parlamentares do deputado(a).")
+              st.subheader("Frentes parlamentares do deputado(a)")
               st.dataframe(df_frentes['titulo'],
-                          labels={'titulo': 'Frente Parlamentar'})
+                          column_config={'titulo': 'Frente Parlamentar'})
             url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
             response_orgaos = requests.get(url_orgaos)
             if response_orgaos.status_code == 200:
               dados_orgaos = response_orgaos.json()
               df_orgaos = pd.DataFrame(dados_orgaos['dados'])
-              st.subheader("Órgãos que o deputado(a) integra.")
+              st.subheader("Órgãos que o deputado(a) integra")
               st.dataframe(df_orgaos.columns[['siglaOrgao', 'nomePublicacao', 'titulo']],
-                          labels={'siglaOrgao': 'Sigla do Órgão',
-                                  'nomePublicacao': 'Nome do Orgao',
-                                  'titulo': 'Status do Deputado'})
+                          column_config={'siglaOrgao': 'Sigla do Órgão',
+                                         'nomePublicacao': 'Nome do Orgao',
+                                         'titulo': 'Status do Deputado'})
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
               df_despesas = pd.DataFrame(dados_despesas['dados'])
-              fig_despesas = px.bar(df_despesas,
-                                    x='tipoDespesa',
-                                    y='valorDocumento',
-                                    color='mes',
-                                    title=f'Despesas de {nome_deputado}',
-                                    labels={'tipoDespesa': 'Tipo de Despesa',
-                                            'valorDocumento': 'Valor da Despesa',
-                                            'mes': 'Mês'})
-              fig_despesas.show()
+              if not df_despesas.empty:
+                st.subheader("Despesas do Deputado(a)")
+                fig_despesas = px.bar(df_despesas,
+                                      x='tipoDespesa',
+                                      y='valorDocumento',
+                                      color='mes',
+                                      title=f'Despesas de {nome_deputado}',
+                                      labels={'tipoDespesa': 'Tipo de Despesa',
+                                              'valorDocumento': 'Valor da Despesa',
+                                              'mes': 'Mês'})
+                fig_despesas.show()
             else:
-              st.write(f"Erro na requisição")              
+              st.warning(f"Nenhuma despesa encontrada para {nome_deputado} no período.")         
               st.write("Obrigado por usar o programa. Até a próxima!")
     else:
-        st.write(f"Erro na requisição.")
+        st.warning(f"Erro na requisição.")
         st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")
