@@ -122,7 +122,6 @@ if busca == "c) Deputados":
                 fig_despesas = px.bar(df_despesas,
                                       x='tipoDespesa',
                                       y='valorDocumento',
-                                      color='mes',
                                       title=f'Despesas de {nome_deputado}',
                                       labels={'tipoDespesa': 'Tipo de Despesa',
                                               'valorDocumento': 'Valor da Despesa',
