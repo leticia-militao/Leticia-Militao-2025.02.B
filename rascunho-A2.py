@@ -10,21 +10,21 @@ import plotly.graph_objects as go
 #Apresentação
 st.title("Câmara Aberta")
 st.header("Uma plataforma dedicada ao acesso a informações da Câmara dos Deputados")
-st.write("Aqui você pode buscar informações sobre Projetos de Lei, Propostas de Emenda Constitucional, ou deputados.")
+st.subheader("Aqui você pode buscar informações sobre Projetos de Lei, Propostas de Emenda Constitucional, ou deputados.")
 
 #Menu 1 - Opção de Busca
 st.header("O que você está procurando?")
 opcoes = ["a) Projetos de Lei", "b) Propostas de Emenda Constitucional", "c) Deputados", "d) Sair"]
 busca = st.radio("Selecione a opção da sua busca:", opcoes)
 if busca == "a) Projetos de Lei":
-  st.header("Você escolheu a opção de buscar projetos de lei.")
+  st.subheader("Você escolheu a opção de buscar projetos de lei.")
 if busca == "b) Propostas de Emenda Constitucional":
-  st.header("Você escolheu a opção de buscar propostas de emenda constitucional.")
+  st.subheader("Você escolheu a opção de buscar propostas de emenda constitucional.")
 if busca == "c) Deputados":
-  st.header("Você escolheu a opção de buscar informações de deputados.")
+  st.subheader("Você escolheu a opção de buscar informações de deputados.")
 if busca == "d) Sair":
-  st.header("Você escolheu a opção de sair da pesquisa.")
-  st.header("Obrigado por usar o programa. Até a próxima!")
+  st.subheader("Você escolheu a opção de sair da pesquisa.")
+  st.subheader("Obrigado por usar o programa. Até a próxima!")
 
 #Resultado do Menu a) PL
 if busca == "a) Projetos de Lei":
@@ -37,12 +37,12 @@ if busca == "a) Projetos de Lei":
         if dados_pl['dados']:
             for proposicao in dados_pl['dados']:
                 id_proposicao = proposicao['id']
-                st.header(f"Projeto encontrado!")
+                st.subheader(f"Projeto encontrado!")
                 url_detalhes = f"https://dadosabertos.camara.leg.br/api/v2/proposicoes/{id_proposicao}"
                 response_detalhes = requests.get(url_detalhes)
                 if response_detalhes.status_code == 200:
                     detalhes = response_detalhes.json()['dados']
-                    st.header("Detalhes do Projeto")
+                    st.subheader("Detalhes do Projeto")
                     st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                     st.write(f"Ementa completa: {detalhes['ementa']}")
                     st.write("Obrigado por usar o programa. Até a próxima!")
@@ -62,12 +62,12 @@ if busca == "b) Propostas de Emenda Constitucional":
         if dados_pec['dados']:
             for proposicao in dados_pec['dados']:
                   id_proposicao = proposicao['id']
-                  st.header(f"PEC encontrada!")
+                  st.subheader(f"PEC encontrada!")
                   url_detalhes = f"https://dadosabertos.camara.leg.br/api/v2/proposicoes/{id_proposicao}"
                   response_detalhes = requests.get(url_detalhes)
                   if response_detalhes.status_code == 200:
                       detalhes = response_detalhes.json()['dados']
-                      st.header("Detalhes da PEC")
+                      st.subheader("Detalhes da PEC")
                       st.write(f"Situação atual: {detalhes['statusProposicao']['descricaoSituacao']}")
                       st.write(f"Ementa completa: {detalhes['ementa']}")
                       st.write("Obrigado por usar o programa. Até a próxima!")
@@ -89,10 +89,24 @@ if busca == "c) Deputados":
             deputado_partido = dados_deputado[0]['siglaPartido']
             deputado_uf = dados_deputado[0]['siglaUf']
             df_deputado = pd.DataFrame(dados_deputado)
-            st.header(f"Deputado(a) encontrado(a).")
+            st.subheader(f"Deputado(a) encontrado(a).")
             st.write(f"Nome: {deputado_nome}")
             st.write(f"Partido: {deputado_partido}")
-            st.write(f"UF: {deputado_uf}")
+            st.write(f"UF: {deputado_uf}")  
+            url_frentes = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/frentes"
+            response_frentes = requests.get(url_frentes)
+            if response_frentes.status_code == 200:
+              dados_frentes = response_frentes.json()
+              df_frentes = pd.DataFrame(dados_frentes['titulo'])
+              st.subheader("Frentes parlamentares do deputado(a).")
+              st.DataFrame(df_frentes)
+            url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
+            response_orgaos = requests.get(url_orgaos)
+            if response_orgaos.status_code == 200:
+              dados_orgaos = response_orgaos.json()
+              df_orgaos = pd.DataFrame(dados_orgaos['nomeOrgao', 'siglaOrgao','titulo'])
+              st.subheader("Órgãos que o deputado(a) integra.")
+              st.DataFrame(df_orgaos)
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
@@ -108,24 +122,7 @@ if busca == "c) Deputados":
                                             'mes': 'Mês'})
               fig_despesas.show()
             else:
-              st.write(f"Erro na requisição")
-              
-            st.header("Frentes parlamentares do deputado(a).")
-            url_frentes = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/frentes"
-            response_frentes = requests.get(url_frentes)
-            if response_frentes.status_code == 200:
-              dados_frentes = response_frentes.json()
-              df_frentes = pd.DataFrame(dados_frentes['dados'])
-            else:
-              st.write(f"Erro na requisição")
-              
-            st.header("Órgãos que o deputado(a) integra.")
-            url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
-            response_orgaos = requests.get(url_orgaos)
-            if response_orgaos.status_code == 200:
-              dados_orgaos = response_orgaos.json()
-              df_orgaos = pd.DataFrame(dados_orgaos['dados'])
-              st.write(df_orgaos.head())
+              st.write(f"Erro na requisição")              
               st.write("Obrigado por usar o programa. Até a próxima!")
             else:
               st.write(f"Erro na requisição")
