@@ -93,7 +93,6 @@ if busca == "c) Deputados":
             st.write(f"Nome: {deputado_nome}")
             st.write(f"Partido: {deputado_partido}")
             st.write(f"UF: {deputado_uf}")
-            st.write(f"ID: {deputado_id}")
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
@@ -110,18 +109,17 @@ if busca == "c) Deputados":
               fig_despesas.show()
             else:
               st.write(f"Erro na requisição")
-        elif info_deputado == "2 - Frentes parlamentares do deputado(a)":
-            st.header("Você escolheu a opção de buscar as frentes parlamentares do deputado(a).")
+              
+            st.header("Frentes parlamentares do deputado(a).")
             url_frentes = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/frentes"
             response_frentes = requests.get(url_frentes)
             if response_frentes.status_code == 200:
               dados_frentes = response_frentes.json()
               df_frentes = pd.DataFrame(dados_frentes['dados'])
-              
             else:
               st.write(f"Erro na requisição")
-        elif info_deputado == "3 - Órgãos que o deputado(a) integra":
-            st.header("Você escolheu a opção de buscar os órgãos que o deputado(a) integra.")
+              
+            st.header("Órgãos que o deputado(a) integra.")
             url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
             response_orgaos = requests.get(url_orgaos)
             if response_orgaos.status_code == 200:
