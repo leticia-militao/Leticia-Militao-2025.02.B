@@ -1,1 +1,2 @@
 streamlit[charts]
+pip install streamlit plotly
