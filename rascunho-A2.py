@@ -118,7 +118,6 @@ if busca == "c) Deputados":
               df_despesas = pd.DataFrame(dados_despesas['dados'])
               if not df_despesas.empty:
                 st.subheader("Despesas do Deputado(a)")
-                st.write(deputado_id)
                 fig_despesas = px.bar(df_despesas,
                                       x='tipoDespesa',
                                       y='valorDocumento',
