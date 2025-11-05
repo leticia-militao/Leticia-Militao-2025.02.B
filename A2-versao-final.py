@@ -81,6 +81,7 @@ if busca == "c) Deputados":
     nome_deputado = st.text_input("Digite o nome do deputado(a):")
     url_deputados = f"https://dadosabertos.camara.leg.br/api/v2/deputados?nome={nome_deputado}"
     response = requests.get(url_deputados)
+#Informações Gerais do Deputado(a)
     if response.status_code == 200:
         dados_deputado = response.json()['dados']
         if dados_deputado:
@@ -92,7 +93,8 @@ if busca == "c) Deputados":
             st.subheader(f"Deputado(a) encontrado(a).")
             st.write(f"Nome: {deputado_nome}")
             st.write(f"Partido: {deputado_partido}")
-            st.write(f"UF: {deputado_uf}")  
+            st.write(f"UF: {deputado_uf}")
+#Frentes do Deputado(a)
             url_frentes = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/frentes"
             response_frentes = requests.get(url_frentes)
             if response_frentes.status_code == 200:
@@ -101,6 +103,7 @@ if busca == "c) Deputados":
               st.subheader("Frentes parlamentares do deputado(a)")
               st.dataframe(df_frentes['titulo'],
                           column_config={'titulo': 'Frente Parlamentar'})
+#Órgãos do Deputado(a)
             url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
             response_orgaos = requests.get(url_orgaos)
             if response_orgaos.status_code == 200:
@@ -111,6 +114,7 @@ if busca == "c) Deputados":
                           column_config={'siglaOrgao': 'Sigla do Órgão',
                                          'nomePublicacao': 'Nome do Orgao',
                                          'titulo': 'Status do Deputado'})
+#Despesas do Deputado(a)
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
