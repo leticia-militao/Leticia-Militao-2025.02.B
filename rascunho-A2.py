@@ -124,9 +124,6 @@ if busca == "c) Deputados":
             else:
               st.write(f"Erro na requisição")              
               st.write("Obrigado por usar o programa. Até a próxima!")
-            else:
-              st.write(f"Erro na requisição")
-
     else:
         st.write(f"Erro na requisição.")
         st.write(f"Nenhum deputado(a) encontrado com o nome '{nome_deputado}'.")
