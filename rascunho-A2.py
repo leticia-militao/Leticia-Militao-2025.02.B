@@ -119,8 +119,9 @@ if busca == "c) Deputados":
               if not df_despesas.empty:
                 st.subheader("Despesas do Deputado(a)")
                 fig_despesas = px.bar(df_despesas,
-                                      x='tipoDespesa',
+                                      x='mes',
                                       y='valorDocumento',
+                                      color='tipoDespesa',
                                       title=f'Despesas de {nome_deputado}',
                                       labels={'tipoDespesa': 'Tipo de Despesa',
                                               'valorDocumento': 'Valor da Despesa',
