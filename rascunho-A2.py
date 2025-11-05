@@ -107,7 +107,7 @@ if busca == "c) Deputados":
               dados_orgaos = response_orgaos.json()
               df_orgaos = pd.DataFrame(dados_orgaos['dados'])
               st.subheader("Órgãos que o deputado(a) integra")
-              st.dataframe(df_orgaos.columns[['siglaOrgao', 'nomePublicacao', 'titulo']],
+              st.dataframe(df_orgaos[['siglaOrgao', 'nomePublicacao', 'titulo']],
                           column_config={'siglaOrgao': 'Sigla do Órgão',
                                          'nomePublicacao': 'Nome do Orgao',
                                          'titulo': 'Status do Deputado'})
