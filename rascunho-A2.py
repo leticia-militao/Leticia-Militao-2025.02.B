@@ -126,7 +126,7 @@ if busca == "c) Deputados":
                                       labels={'tipoDespesa': 'Tipo de Despesa',
                                               'valorDocumento': 'Valor da Despesa',
                                               'mes': 'Mês'})
-                fig_despesas.show()
+                st.plotly_chart(fig_despesas, use_container_width=True)
             else:
               st.warning(f"Nenhuma despesa encontrada para {nome_deputado} no período.")         
               st.write("Obrigado por usar o programa. Até a próxima!")
