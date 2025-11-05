@@ -93,7 +93,6 @@ if busca == "c) Deputados":
             st.write(f"Nome: {deputado_nome}")
             st.write(f"Partido: {deputado_partido}")
             st.write(f"UF: {deputado_uf}")
-            st.write(f"ID: {deputado_id}")
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
