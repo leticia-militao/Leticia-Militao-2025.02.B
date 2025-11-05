@@ -97,14 +97,14 @@ if busca == "c) Deputados":
             response_frentes = requests.get(url_frentes)
             if response_frentes.status_code == 200:
               dados_frentes = response_frentes.json()
-              df_frentes = pd.DataFrame(dados_frentes['titulo'])
+              df_frentes = pd.DataFrame(dados_frentes['dados'])
               st.subheader("Frentes parlamentares do deputado(a).")
               st.DataFrame(df_frentes)
             url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
             response_orgaos = requests.get(url_orgaos)
             if response_orgaos.status_code == 200:
               dados_orgaos = response_orgaos.json()
-              df_orgaos = pd.DataFrame(dados_orgaos['nomeOrgao', 'siglaOrgao','titulo'])
+              df_orgaos = pd.DataFrame(dados_orgaos['dados'])
               st.subheader("Órgãos que o deputado(a) integra.")
               st.DataFrame(df_orgaos)
             url_despesas = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/despesas"
