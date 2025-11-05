@@ -88,7 +88,7 @@ if busca == "c) Deputados":
             deputado_nome = dados_deputado[0]['nome']
             deputado_partido = dados_deputado[0]['siglaPartido']
             deputado_uf = dados_deputado[0]['siglaUf']
-            df_deputado = pd.dataframe(dados_deputado)
+            df_deputado = pd.DataFrame(dados_deputado)
             st.subheader(f"Deputado(a) encontrado(a).")
             st.write(f"Nome: {deputado_nome}")
             st.write(f"Partido: {deputado_partido}")
@@ -97,7 +97,7 @@ if busca == "c) Deputados":
             response_frentes = requests.get(url_frentes)
             if response_frentes.status_code == 200:
               dados_frentes = response_frentes.json()
-              df_frentes = pd.dataframe(dados_frentes['dados'])
+              df_frentes = pd.DataFrame(dados_frentes['dados'])
               st.subheader("Frentes parlamentares do deputado(a).")
               st.dataframe(df_frentes)
             url_orgaos = f"https://dadosabertos.camara.leg.br/api/v2/deputados/{deputado_id}/orgaos"
@@ -111,7 +111,7 @@ if busca == "c) Deputados":
             response_despesas = requests.get(url_despesas)
             if response_despesas.status_code == 200:
               dados_despesas = response_despesas.json()
-              df_despesas = pd.dataframe(dados_despesas['dados'])
+              df_despesas = pd.DataFrame(dados_despesas['dados'])
               fig_despesas = px.bar(df_despesas,
                                     x='tipoDespesa',
                                     y='valorDocumento',
