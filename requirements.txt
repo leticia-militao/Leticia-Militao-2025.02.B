@@ -1,3 +1,2 @@
 streamlit[charts]
-streamlit plotly
-
+plotly
